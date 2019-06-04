@@ -1,0 +1,126 @@
+<h2 [ngStyle]="{ color: '#282658', 'font-size': '20px' }">Dashboard</h2>
+<!-- Indicateurs -->
+<div class="row" [ngStyle]="{ background: 'white' }">
+  <!-- indicateur Today-->
+  <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6 colDoubleIndicator">
+    <div class="card text-center info-box">
+      <div class="card-header indicateurHeader">
+        <h6 class="titleIndicator">tweets today</h6>
+      </div>
+      <div class="card-body indicateurBody">
+        <div class="row">
+          <div class="col-4">
+              <i class="fa fa-twitter icone"></i>
+           </div>
+          <div class="col-8">
+            <p
+              class="numberTweetIndicator"
+              
+            >
+            {{Requete_nbr_tweet_today}}
+              
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- indicateur Yesterday -->
+    <div class="card text-center info-box underBoxIndicator">
+      <div class="card-header indicateurHeader">
+            <h6 class="titleIndicator">tweets yesterday</h6>
+      </div>
+      <div class="card-body indicateurBody">
+        <div class="row">
+          <div class="col-4">
+              <i class="fa fa-twitter icone"></i>
+          </div>
+          <div class="col-8">
+            <p
+              class="numberTweetIndicator"
+            >
+            {{Requete_nbr_tweet_yesterday}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- nombre total de tweets-->
+  <div class="col-xl-2 col-lg-3 col-md-6 col-xs-6 col-6 colDoubleIndicator"  id="indicateurTotal">
+    <div class="card text-center info-box allTweetsIndicator">
+      <div class="card-header headerTotalIndicator">
+        <h6 class="titleIndicator">Total saved tweets</h6>
+      </div>
+      <div class="card-body">
+        <h2
+          class="numberTweetIndicatorTotal"
+        >
+          {{ nbrTweetTotal }}
+        </h2>
+        <div class="row lastMonthLastWeek">
+          <div class="col-6">
+            <p class="no-margin text-truncate subtitleIndicator">Last Month</p>
+            <span
+              class="subnumberTweetIndicator"
+              >{{ nbrTweetLastMonth }}</span
+            >
+          </div>
+          <div class="col-6">
+            <p class="no-margin text-truncate subtitleIndicator">Last Week</p>
+            <span
+              class="subnumberTweetIndicator"
+              >{{ nbrTweetLastWeek }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- charte graphique -->
+  <div class=" col-xs-12 col-xl-5 col-lg-5 col-md-12 col-sm-12 colDoubleIndicator">
+    <az-dynamic-chart [modelActif]="modelActif"></az-dynamic-chart>
+  </div> 
+ <!--sélécteur de modéle-->
+  <div class="form-group col-xl-3 modelSelector" *ngIf = "allModels">
+    <label class = "textAbove" for="selectModel">Choose your model:</label>
+    <select class="form-control" [(ngModel)]="modelActif" (click) = "calculateDataWithNewModel()" [ngModelOptions]="{ standalone: true }" id="selectModel">
+        <option
+        *ngFor="let model of allModels; let i = index"
+        [value]="model"
+        id = "textModel"
+        >{{ model }}</option
+      >
+    </select>
+    <label class = "textAbove" for="selectModel">Or</label>
+    <!-- boutton go to dashboard-->
+    <button
+    id ="bouttonNewOne"
+    class="confirmationButton"
+    [routerLink]="['/pages/annotateTweets']"
+  >
+    Create a new One
+  </button>
+</div>
+</div>
+<!-- twitter feed -->
+<h2 [ngStyle]="{ color: '#282658', 'font-size': '20px' }">Tweets</h2>
+<app-social-feed [modelActif]="modelActif"></app-social-feed>
+
+<!-- Nuage de mots -->
+<h2 [ngStyle]="{ color: '#282658', 'font-size': '20px', 'margin-top': '1em' }">
+  Top 100 hashtags last week
+</h2>
+<div class="row" [ngStyle]="{ background: 'white' }">
+  <div class="card-body"><app-cloud [modelActif]="modelActif"></app-cloud></div>
+</div>
+
+<!-- table des top utilisateurs -->
+<h2 [ngStyle]="{ color: '#282658', 'font-size': '20px', 'margin-top': '1em' }">
+  Top 10 most active users last week
+</h2>
+<div class="row" [ngStyle]="{ background: 'white' }">
+  <div class="card-body">
+    <app-top-users-table [modelActif]="modelActif"></app-top-users-table>
+  </div>
+</div>

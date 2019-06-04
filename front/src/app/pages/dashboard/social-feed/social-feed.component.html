@@ -1,0 +1,124 @@
+<div class="row" [ngStyle]="{ 'background-color': 'white' }">
+  <div
+    class="col-lg-12 col-12"
+    [ngStyle]="{ 'margin-top': '1em', 'margin-bottom': '1em' }"
+  >
+    <div class="clearfix">
+      <ul class="nav nav-tabs top pull-left w-100p">
+        <!--  pour taille portable, n'est affiché que a partir d'une certaine résolution, remplace SearchTools-->
+        <li id="SearchToolsForPhone">
+          <!--recherche par date range  -->
+          <my-date-range-picker
+            id="dateRangePicker"
+            name="mydaterange"
+            [options]="myDateRangePickerOptions"
+            (dateRangeChanged)="onDateRangeChanged($event)"
+            placeholder="Search with a date range"
+          ></my-date-range-picker>
+          <!-- recherche par mots clés-->
+          <div class="search-field">
+            <span class="fa fa-search search-icon"></span>
+            <input
+              class="search-input"
+              type="text"
+              name="keywords"
+              placeholder="Search with keywords"
+              (keyup)="searchKeyword($event)"
+            />
+          </div>
+          <!-- tweets trouvés -->
+          <div class="card text-center" id="cardTweetFound">
+            <div class="card-body NbrTweetFound">
+              {{this.total}} tweets
+            </div>
+          </div>
+        </li>
+        <!--a chaque changement de tab l'on relance la recherche des données pour la nouvelle catégorie séléctionnée et l'on envoie
+        un événement de changement de catégorie au composant parent dashboard, (this.categorie.emit(numéro de la catégorie)-->
+        <li class="nav-item" id="cableTab">
+          <a class="nav-link active" data-toggle="tab" href="#tb">Feed</a>
+        </li>
+        <!-- pour taille d'écran d'ordinateur, remplace SearchToolsForPhone-->
+        <li id="SearchTools">
+          <!-- tweets trouvés -->
+          <div class="card text-center" id="cardTweetFound">
+            <div class="card-body NbrTweetFound">
+              {{this.total}} tweets
+            </div>
+          </div>
+          <!--recherche par date range  -->
+          <my-date-range-picker
+            name="mydaterange"
+            [options]="myDateRangePickerOptions"
+            (dateRangeChanged)="onDateRangeChanged($event)"
+            placeholder="Search with a date range"
+          ></my-date-range-picker>
+          <!-- recherche par mots clés-->
+
+          <div class="search-field">
+            <span class="fa fa-search search-icon"></span>
+            <input
+              class="search-input"
+              type="text"
+              name="keywords"
+              placeholder="Search with keywords"
+              (keyup)="searchKeyword($event)"
+            />
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content top">
+      <!-- feed -->
+      <div class="tab-pane active" id="tb">
+        <div
+          class="col tweets-container"
+          *ngIf="tweetsLoaded && tweets.length > 0"
+        >
+          <div
+            *ngFor="
+              let tweet of (tweets
+                | paginate
+                  : {
+                      id: '1',
+                      itemsPerPage: tweetNumberShown,
+                      currentPage: page,
+                      totalItems: total
+                    })
+            "
+            class="tweet-card-container"
+          >
+            <ngx-tweet
+              tweetId="{{ parseTweet(tweet._source.source) }}"
+            ></ngx-tweet>
+          </div>
+        </div>
+        <div *ngIf="tweetsLoaded && tweets.length > 0">
+          <pagination-controls
+            id="1"
+            (pageChange)="page = $event"
+            (click)="getElasticSearchData(modelActif)"
+            maxSize="{{ linkNumberPagination }}"
+          ></pagination-controls>
+          <ng-select
+            [items]="tweetNumberByPage"
+            bindValue="number"
+            bindLabel="number"
+            class="pagination-select"
+            [searchable]="false"
+            [clearable]="false"
+            [(ngModel)]="tweetNumberShown"
+            (change)="getElasticSearchData(modelActif)"
+          >
+          </ng-select>
+        </div>
+        <div class="no-data-container" *ngIf="notweetsFound">
+          <img src="./assets/img/app/question-mark-default.png" />
+          <h5 class="fs-help">
+            No tweets found
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

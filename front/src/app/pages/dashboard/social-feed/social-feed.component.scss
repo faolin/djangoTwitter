@@ -1,0 +1,159 @@
+// champs de recherche contenant l'icone de la loupe et l'input
+.search-field {
+  width: 190px;
+  position: relative;
+  top: 4px;
+  padding-left: 1em;
+}
+// zone de texte input pour la recherche
+.search-field .search-input {
+  border: none;
+  border-bottom: solid 2px #ccc;
+  border-radius: 0;
+  width: 100%;
+  box-sizing: border-box;
+  color: #282658;
+  // Permet de ralentir l'apparition de la barre de couleur qui souligne l'input des keywords
+  transition: border-bottom 0.2s linear;
+}
+// ligne colorée en dessous de l'input de recherche
+.search-field .search-input:focus {
+  border-bottom: solid 2px #282658;
+}
+// icone loupe de recherche
+.search-field .search-icon {
+  right: 3%;
+  position: absolute;
+  top: 4px;
+  cursor: pointer;
+}
+// couleur de l'icone de la loupe
+.search-field .fa-search {
+  color: #ef8e63;
+}
+// barre avec les 4 catégories
+.nav-tabs {
+  background-color: white;
+  border-bottom: #282059 1px solid !important;
+}
+
+// tab active
+.nav-link.active {
+  // border-color: #282059 #282059 #f8f9fa !important;
+  border-top: #282059 1px solid !important;
+  border-right: #282059 1px solid !important;
+  border-left: #282059 1px solid !important;
+  font-weight: bold;
+  color: #282658 !important ;
+}
+// permet de faire en sorte que l'on puisse toujours changer de tab
+.nav-tabs .nav-item {
+  z-index: 2;
+}
+// tab inactive
+.nav-link {
+  color: rgba(94, 94, 97, 0.8) !important;
+}
+// panneau actif
+.tab-pane.active {
+  border-left: #282059 1px solid !important;
+  border-right: #282059 1px solid !important;
+  border-bottom: #282059 1px solid !important;
+}
+// point d'interrogation qui apparait si l'on ne trouve pas de tweets
+.no-data-container img {
+  margin-bottom: 1em;
+}
+
+.no-data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  // Permet de faire apparaître l'image d'échec de la recherche en rebondissant
+  animation: bounceIn 1.5s;
+  flex: 1;
+  padding: 2em;
+}
+// contient la liste des tweets affichés
+.tweets-container{
+column-count: 3;
+column-gap: 1em
+}
+// carte contenant un seul tweet
+.tweet-card-container{
+ break-inside: avoid;
+}
+// sélécteur de date
+#SearchTools {
+  width: 97%;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+}
+// indicateur du nombre de tweet trouvé
+.NbrTweetFound {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  font-weight: bold;
+  color: white;
+  background-color: #6eb000;
+}
+#cardTweetFound {
+  margin: 10px;
+}
+// changement de position des input de recherche en fonction de la résolution de l'écran
+#SearchToolsForPhone {
+  display: none;
+}
+@media (max-width: 1067px) {
+  #dateRangePicker{
+    padding-left: 1rem !important;
+  }
+  #SearchToolsForPhone {
+    display: unset !important;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  #SearchTools {
+    display: none !important;
+  }
+  .search-field {
+    margin-left: 5px;
+  }
+}
+// permet de réduire le nombre de colonnes en fonction de la résolution de l'écran
+@media (max-width: 991px) {
+  .tweets-container{
+    column-count: 2;
+    }
+}
+@media (max-width: 643px) {
+  .tweets-container{
+    column-count: 1;
+    }
+}
+// permet que les tabs restent en ligne quand la résolution devient trop petite, en réduisant leur largeur
+@media (max-width: 392px) {
+  #energieTab {
+    width: 70px;
+  }
+  #cableTab {
+    width: 70px;
+  }
+  #energiteTabTexte {
+    float: left;
+  }
+  // tab inactive
+  .nav-link {
+    padding: 0.25rem;
+  }
+}
+@media (max-width: 388px) {
+  #energieTab {
+    width: 65px;
+  }
+  #cableTab {
+    width: 65px;
+  }
+}

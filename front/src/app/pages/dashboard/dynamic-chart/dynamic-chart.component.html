@@ -1,0 +1,14 @@
+<div class="row" [ngStyle]="{ 'align-items': 'center', height: '100%' }">
+    <h2 *ngIf ="charte_diponible" [ngStyle]="{'margin': '0 auto'}">
+      <canvas
+      baseChart
+      [chartType]="'line'"
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="true"
+      id = "charteGraphique"
+      >
+  </canvas>
+    </h2>
+</div>

@@ -1,0 +1,20 @@
+<nav class="nav az-navbar fixed-top">
+    <a class="navbar-brand" routerLink="/" (click)="closeSubMenus()">
+        <img src="assets/img/logo/az_logo_full.svg" alt="" class="d-md-block d-none"> 
+        <img src="assets/img/logo/az_logo.png" alt="" class="d-md-none"> 
+    </a>
+
+    <ul class="nav right-section">
+        <li class="nav-item">
+          <div class="dropdown float-right user-menu">
+              <a class="dropdown-toggle user-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                  <span class="d-lg-inline d-none">{{ email }}</span>
+              </a>
+
+              <ul class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['/login', { logout: true }]"><i class="fa fa-power-off"></i>Log out</a>
+              </ul>
+          </div>
+        </li>
+    </ul>
+</nav>

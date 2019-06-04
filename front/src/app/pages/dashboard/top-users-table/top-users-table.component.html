@@ -1,0 +1,15 @@
+<!--loader d'attente du chargement du top10-->
+<div class="spinner-container" *ngIf="!top10">
+    <app-spinner [height]="30" [width]="30" [color]="'#282658'"></app-spinner>
+</div>
+<!--top10-->
+<div class="row">
+  <div *ngFor="let user of top10">
+    <div class="col collogoCompany">
+      <a href="https://twitter.com/{{user.screen_name}}">
+      <img class="rounded-circle logoCompany" src="{{ user.profile_image_url }}" />
+      </a>
+      <p>{{ user.name }}</p>
+      <p class ="nbrTweetsTexte">{{ user.weight }}</p>
+  </div>
+</div>

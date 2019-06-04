@@ -1,0 +1,197 @@
+// colonne contenant 2 indicateurs
+.colDoubleIndicator {
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
+}
+// body de l'indicateur
+.indicateurBody {
+  background-color: #282658;
+  padding: 0px;
+}
+// header de l'indicateur
+.indicateurHeader {
+  background-color: #252350 !important;
+  padding: 0.25rem 0.25rem;
+}
+// indicateur du nbr total de tweet
+#indicateurTotal {
+  padding-left: 0;
+}
+// titre des indicateurs
+.titleIndicator {
+  font-weight: bold !important;
+  text-align: left !important;
+  letter-spacing: 0 !important;
+}
+// sous titres indicateur
+.subtitleIndicator {
+  font-weight: bold !important;
+  letter-spacing: 0 !important;
+  color: white;
+  font-size: 15px;
+  overflow: unset;
+}
+// chiffre des indicateurs
+.numberTweetIndicator {
+  font-weight: bold;
+  text-align: left;
+  font-size: 50px;
+  color: white;
+}
+//sous chiffre de l'indicateur total
+.subnumberTweetIndicator {
+  font-weight: bold !important;
+  font-size: 20px;
+  color: white;
+}
+// indicateur sous l'autre
+.underBoxIndicator {
+  top: 1em;
+  margin-bottom: 1em;
+}
+// indicateur du nombre total de tweets
+.allTweetsIndicator {
+  height: 100%;
+  background-color: #ef8e63;
+}
+.headerTotalIndicator {
+  background-color: #944b0f5c !important;
+  padding: 0.25rem 0.25rem;
+}
+.bodyTotalNbrTweets {
+  display: flex;
+  align-items: center;
+}
+.numberTweetIndicatorTotal {
+  font-weight: bold !important;
+  font-size: 50px;
+  color: white;
+}
+//sous chiffre de l'indicateur total
+.subnumberTweetIndicator {
+  font-weight: bold !important;
+  font-size: 20px;
+}
+//icone twiter
+.icone {
+  color: white;
+  margin-top: 5px;
+  font-size: 40px;
+  margin-top: 1rem;
+}
+// permet de séléctionner le modéel d'apprentissage
+.modelSelector {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+// selecteur de modéle
+#selectModel {
+  width: 150px;
+  border: 2px solid #282658;
+  height: 38px;
+  border-radius: 10px;
+  // texte 
+  font-size: 18px;
+  color: #282658;
+}
+// texte au dessus du selecteur de modéle et du boutton create a new one
+.textAbove{
+  font-size: 17px;
+  color: #282658;
+}
+// bouton de confirmation
+.confirmationButton{
+  margin-top: 0;
+  display: block;
+  margin-left : auto;
+  margin-right: auto;
+  width: 150px;
+}
+// les bouttons de la page
+button {
+  background: #ef8e63;
+  font-weight: 600 !important;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 0;
+  transition: all 0.3s;
+}
+button:hover {
+  background: #ca783d ;
+};
+.button-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.cgu-button-container {
+  justify-content: space-evenly;
+}
+
+// réduction de la taille des chiffres en fonction de la taille de la fenêtre
+@media (min-width: 1200px) and (max-width: 1300px) {
+  .numberTweetIndicatorTotal {
+    font-size: 30px !important;
+  }
+  //sous chiffre de l'indicateur total
+  .subnumberTweetIndicator {
+    font-size: 15px !important;
+  }
+  // texte last month et last week
+  .lastMonthLastWeek{
+    padding-top: 2em;
+  }
+  
+}
+@media (min-width: 1200px) and (max-width: 1440px) {
+// empéche la fin du texte last month et last week de disparaitre quand la fenetre est trop petite
+.text-truncate {
+  overflow: unset;
+}
+
+}
+// change la position des chiffres des indicateurs pour une certaine tranche de résolution d'écran afin qu'ils n'aient moins l'air collés au bas
+@media (min-width: 1200px) and (max-width: 1353px) {
+  .numberTweetIndicator {
+    padding: 0 !important;
+  }
+}
+
+// empéche le saut a la ligne des textes de last month et last week
+@media (min-width: 1439px) {
+  .text-truncate {
+    white-space: nowrap;
+    overflow: unset;
+  }
+}
+@media (max-width: 494px) {
+  // sous titres indicateur
+.subtitleIndicator {
+  // permet que les mots last et month soit l'un sous l'autre
+  white-space: normal;
+  width: 50px;
+}
+
+}
+// quand on est sur tablette l'on adapte
+@media (max-width: 991px) {
+  .colDoubleIndicator {
+    padding-bottom: 0 !important;
+  }
+  #indicateurTotal {
+    padding-left: 1em;
+  }
+  #SearchTools {
+    display: unset !important;
+    position: unset !important;
+  }
+}

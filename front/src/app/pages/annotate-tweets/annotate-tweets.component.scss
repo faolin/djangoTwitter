@@ -1,0 +1,281 @@
+// texte d'indications a l'utilisateur
+.texteIndications{
+  color: #282658;
+  font-weight: 700;
+  padding-top: 1em;
+}
+// indicateur du nombre de tweets annotés
+#nbrTweetsAnnoted{
+  font-weight: 900;
+  color: #ef8e63;
+}
+
+// header de l'indicateur
+.indicateurHeader {
+  background-color: #18154e !important;
+}
+// body de l'indicateur
+.indicateurBody {
+  background-color: #282658;
+  padding: 0px;
+}
+// titre des indicateurs
+.titleIndicator {
+  font-weight: bold;
+  text-align: left ;
+  letter-spacing: 0 ;
+  color: white;
+  margin-bottom: 0;
+
+}
+// chiffre des indicateurs
+.numberTweetIndicator {
+  font-weight: bold;
+  text-align: center;
+  font-size: 50px ;
+  color: white;
+}
+// boutton de rafraichissement
+#buttonRefresh{
+  color: #ef8e63;
+  margin-left: 50%;
+  cursor: pointer;
+}
+// champs permettant d'ajouter des keywords 
+.add-field {
+    width: 190px;
+    position: relative;
+    top: 4px;
+    padding-left: 1em;
+  }
+  // zone de texte input pour l'ajout de keywords
+  .add-field .add-input {
+    border: none;
+    border-bottom: solid 2px #ccc;
+    border-radius: 0;
+    width: 100%;
+    box-sizing: border-box;
+    color: #282658;
+    padding-top: 1em;
+    // Permet de ralentir l'apparition de la barre de couleur qui souligne l'input des keywords
+    transition: border-bottom 0.2s linear;
+  }
+  // ligne colorée en dessous de l'input d'ajout
+  .add-field .add-input:focus {
+    border-bottom: solid 2px #282658;
+  }
+
+// les bouttons de la page
+  button {
+    background: #ef8e63;
+    font-weight: 600 !important;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 0;
+    transition: all 0.3s;
+  }
+  button:hover {
+    background: #ca783d ;
+  };
+  .button-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .cgu-button-container {
+    justify-content: space-evenly;
+  }
+
+  // bouton de confirmation
+  .confirmationButton{
+    display: block;
+    margin-left : auto;
+    margin-right: auto;
+    width: 200px;
+  }
+  // boutton add
+  #addButton{
+    width: 50px;
+  }
+
+  // Les keywords actifs
+  .active-keyword-container {
+    width: 100%;
+    padding: 0 0.7em;
+    align-items: baseline;
+  }
+  
+  .active-keyword {
+    display: inline-flex;
+    padding: 0.3rem;
+    background: #ef8e63;
+    color: #fff;
+    align-items: center;
+    margin: 0.3rem;
+  }
+  
+  .active-keyword-label {
+    font-weight: 700;
+  }
+  
+  .active-keyword-container-title {
+    padding-right: 0.7em;
+  }
+  
+  .active-keyword-close {
+    line-height: 1;
+    display: inline-flex;
+    padding-left: 5px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+// bouttons modifier et supprimer
+.action-button-user {
+  width: 100%;
+  background: #282658;
+  font-weight: bold !important;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+  border: none;
+}
+
+/*buttons fenetre suppression*/
+.action-button {
+  width: 150px;
+  background: #282658;
+  font-weight: bold !important;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+#myModal .action-button:hover,
+#myModal .action-button:focus {
+  background: #4845a1;
+}
+
+/*boutton interessant*/
+#interestingButton{
+  background: #6eb000;
+  width: 120px;
+  margin-right: 1em;
+}
+#interestingButton:hover {
+  background: #ef8e63;
+}
+/* boutton non-intérésant */
+#NoninterestingButton{
+  background-color:#d45d5a ;
+  width: 120px;
+}
+#NoninterestingButton:hover {
+  background: #ef8e63;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+  // fenetre confirmation suppression
+#modal-button-container {
+  text-align: right;
+}
+// texte de la fenetre de confimation de suppression
+.info-modal-title {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.info-title {
+  color: #777777;
+  width: 80%;
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-left: 2px;
+  margin-top: 2em;
+}
+// les animations et propriétés de la fenétre de suppression
+.modal-container {
+  position: fixed;
+  display: table;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: 99999 !important;
+}
+.modal-container.animated {
+  transform: scale(1);
+}
+.modal-container.animated .modal-background {
+  animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal-container.animated .modal-background #infoModal {
+  animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal-container.animated + .content {
+  animation: scaleBack 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal-container.animated.out {
+  animation: quickScaleDown 0s 0.5s linear forwards;
+}
+.modal-container.animated.out .modal-background {
+  animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal-container.animated.out .modal-background #infoModal {
+  animation: scaleDown 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal-container.animated.out + .content {
+  animation: scaleForward 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.modal-container .modal-background {
+  display: table-cell;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  vertical-align: middle;
+}
+.modal-container .modal-background #infoModal {
+  background: white;
+  padding: 20px;
+  display: inline-block;
+  border-radius: 3px;
+  font-weight: 300;
+  position: relative;
+  width: 40%;
+  text-align: left;
+  height: 200px;
+}
+
+@media (max-width: 1024px) {
+  .modal-container .modal-background #infoModal {
+    width: 80%;
+  }
+}
+@media (max-width: 520px) {
+  .modal-container .modal-background #infoModal {
+    height: 320px;
+  }
+}
+

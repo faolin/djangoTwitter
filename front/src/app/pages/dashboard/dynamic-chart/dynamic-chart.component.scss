@@ -1,0 +1,9 @@
+#charteGraphique{
+    height: 250px;
+}
+
+@media (max-width: 519px) {
+    #charteGraphique{
+        height: 150px;
+    }
+}

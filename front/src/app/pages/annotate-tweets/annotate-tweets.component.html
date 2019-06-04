@@ -1,0 +1,241 @@
+<!-- partie keyword ou l'utilisateur rentre ses mots clés -->
+<h2 [ngStyle]="{ color: '#282658', 'font-size': '20px' }">Keywords</h2>
+<div class="row" [ngStyle]="{ background: 'white' }">
+  <!-- input ou l'utilisateur rentre le mot clé qu'il veut ajouter-->
+  <div class="add-field col-lg-3">
+    <input
+      class="add-input"
+      type="text"
+      name="keywords"
+      placeholder="Add keyword"
+      [(ngModel)]="keywordTyped"
+      (keyup.enter)="addKeyword()"
+    />
+  </div>
+  <!-- boutton ajouter -->
+  <button id="addButton" (click)="addKeyword()">
+    Add
+  </button>
+  <!-- container de tout les keywords actifs-->
+  <div class="active-keyword-container">
+    <h5
+      _ngcontent-c5=""
+      class="fs-title active-keyword-container-title"
+      *ngIf="activeKeywords.length > 0"
+    >
+      Active keywords:
+    </h5>
+    <div class="active-keyword" *ngFor="let keyword of activeKeywords">
+      <span class="active-keyword-label">{{ keyword }}</span>
+      <span class="active-keyword-close" (click)="activeKeywordDelete($event)"
+        >×</span
+      >
+    </div>
+  </div>
+
+  <!-- boutton confirmer les keywords actifs-->
+  <button
+    class="confirmationButton"
+    *ngIf="activeKeywords.length > 0"
+    (click)="showModal = true"
+  >
+    Confirm these Keywords
+  </button>
+</div>
+<!-- partie machine learning ou l'utilisateur annote les tweets et voit les informations relatives a son apprentissage -->
+<h2 [ngStyle]="{ color: '#282658', 'font-size': '20px', 'padding-top': '1em' }">
+  Setup your machine learning
+</h2>
+<div class="row" [ngStyle]="{ background: 'white' }">
+  <!--partie affichage du tweet et bouttons d'annotations-->
+  <div class="col-lg-4">
+    <div *ngIf="noTweetFound === true && refreshingTweet === false">
+      <div class="fa fa-warning texteIndications">
+        No tweet was found. Wait for people to post tweets with your keywords in
+        it. You can close this page and comeback later, all the tweets posted
+        during your absence will be saved on the database. You can also try to
+        refresh with the button bellow.
+      </div>
+    </div>
+    <ngx-tweet tweetId="{{ tweetId }}" *ngIf="tweetId"></ngx-tweet>
+    <div
+
+      id="buttonRefresh"
+      [ngClass]="{ 'fa-spin': refreshingTweet }"
+      class="fa fa-refresh fa-3x"
+      (click)="animateRefreshIcone(); getLastTweet()"
+      *ngIf="noTweetFound === true"
+    ></div>
+    <button
+      class="fa fa-check"
+      (click)="annotateTweet(1)"
+      id="interestingButton"
+      *ngIf="noTweetFound === false"
+    >
+      interesting
+    </button>
+    <button
+      class="fa fa-close"
+      (click)="annotateTweet(0)"
+      id="NoninterestingButton"
+      *ngIf="noTweetFound === false"
+    >
+      Non interesting
+    </button>
+  </div>
+  <!--partie informations sur l'apprentissage-->
+  <div class="col-lg-8">
+    <p class="texteIndications">
+      you already treat
+      <span id="nbrTweetsAnnoted">{{ nbrTweetsAnnoted }}</span>
+      tweets. To get an idea of how much you have to treat you can check the
+      scores below. for the scores to be relevant you have to annotate at least
+      a thousand tweets. 
+    </p>
+    <div class="row">
+      <div class="text-center info-box col-lg-4">
+        <div class="card-header indicateurHeader">
+          <h6 class="titleIndicator">Accuracy</h6>
+        </div>
+        <div class="card-body indicateurBody">
+          <p class="numberTweetIndicator">{{ accuracy }} %</p>
+        </div>
+      </div>
+      <p class="col-lg-8 texteIndications">
+        It is the ratio of number of correct predictions to the total number of
+        input samples. It works well only if there are equal number of samples
+        belonging to each class. In reality you will not get a perfect 50-50
+        repartition between interesting /non-interesting tweets. So you have to
+        combine accuracy with precision and recall for a better comprehension of
+        your model. (Accuracy should be > 90%)
+      </p>
+    </div>
+    <div class="row">
+      <div class="text-center info-box col-lg-4">
+        <div class="card-header indicateurHeader">
+          <h6 class="titleIndicator">Precision</h6>
+        </div>
+        <div class="card-body indicateurBody">
+          <p class="numberTweetIndicator">{{ precision }} %</p>
+        </div>
+      </div>
+      <p class="col-lg-8 texteIndications">
+        It is the number of correct positive results divided by the number of
+        positive results predicted by the classifier. (precision should be >
+        75%)
+      </p>
+    </div>
+    <div class="row">
+      <div class="text-center info-box col-lg-4">
+        <div class="card-header indicateurHeader">
+          <h6 class="titleIndicator">Recall</h6>
+        </div>
+        <div class="card-body indicateurBody">
+          <p class="numberTweetIndicator">{{ recall }} %</p>
+        </div>
+      </div>
+      <p class="col-lg-8 texteIndications">
+        It is the number of correct positive results divided by the number of
+        all relevant samples (all samples that should have been identified as
+        positive). (recall should be > 75%)
+      </p>
+    </div>
+    <!-- boutton calculate scores-->
+    <button class="confirmationButton" (click)="calculateScores()">
+      calculate scores
+    </button>
+    <!-- boutton save model-->
+    <button class="confirmationButton" (click)="showModalSaveModel = true">
+      Save my model
+    </button>
+    <!-- boutton go to dashboard-->
+    <button
+    class="confirmationButton"
+    [routerLink]="['/pages/dashboard']"
+  >
+    Go to dashboard
+  </button>
+  </div>
+
+  <!--fenetre de confirmation pour les keywords -->
+  <div
+    class="modal-container"
+    [hidden]="!showModal"
+    [ngClass]="{ animated: showModal, out: !showModal }"
+  >
+    <div class="modal-background">
+      <div class="modal" id="infoModal">
+        <span class="close" id="close" (click)="closeModal()">&times;</span>
+        <div id="toPrint">
+          <h4 class="info-modal-title">Confirmation</h4>
+          <h5 class="info-title">
+            By clicking on confirm you will delete your existing tweet's
+            database and we will start a new connexion to twitter and gathering
+            tweets filtered by the keywords you choose.
+          </h5>
+        </div>
+
+        <div id="modal-button-container">
+          <input
+            type="button"
+            name="cancel"
+            class="action-button"
+            value="Cancel"
+            id="btnClose"
+            (click)="closeModal()"
+          />
+          <button
+            type="submit"
+            class="submit action-button"
+            (click)="stopDeleteDbTweetsStartStreamDjango()"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--fenetre de choix de nom pour le modéle -->
+  <div
+    class="modal-container"
+    [hidden]="!showModalSaveModel"
+    [ngClass]="{ animated: showModalSaveModel, out: !showModalSaveModel }"
+  >
+    <div class="modal-background">
+      <div class="modal" id="infoModal">
+        <span class="close" id="close" (click)="closeModal()">&times;</span>
+        <h5 class="info-title">
+          Don't use spaces and any special character. Use this format if you
+          want to specify multiple words : word1-word2
+        </h5>
+        <div id="toPrint">
+          <input
+            type="text"
+            class="form-control"
+            id="input-1"
+            [(ngModel)]="nameOfTheModel"
+            placeholder="Choose a name for your model."
+          />
+        </div>
+
+        <div id="modal-button-container">
+          <input
+            type="button"
+            name="cancel"
+            class="action-button"
+            value="Cancel"
+            id="btnClose"
+            (click)="closeModal()"
+          />
+          <button
+            type="submit"
+            class="submit action-button"
+            (click)="saveModel()"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
