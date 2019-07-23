@@ -29,4 +29,4 @@ sudo docker export 63925e75dfe2 > contents.tar
 les paths du nouveau emplacement du projet dans les fichier docker.compose.prod.yml,
 nginx.conf et DockerFile.prod
 
-#connexion avec : takioo@live.fr/Movefort4
+#connexion avec : takioo@live.fr mdp: sinay2018
