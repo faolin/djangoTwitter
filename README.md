@@ -2,6 +2,7 @@
 #grâce a un modéle SVM et les enregistrer sur elasticsearch
 #placer les fichier du dist d'angular dans le dossier static files dans /back
 
+
 #build and run the docker
 sudo docker-compose -f docker-compose.prod.yml up -d --build
 
@@ -28,3 +29,4 @@ sudo docker export 63925e75dfe2 > contents.tar
 les paths du nouveau emplacement du projet dans les fichier docker.compose.prod.yml,
 nginx.conf et DockerFile.prod
 
+#connexion avec : takioo@live.fr/Movefort4
