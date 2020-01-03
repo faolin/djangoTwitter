@@ -29,7 +29,13 @@ sudo docker export 63925e75dfe2 > contents.tar
 les paths du nouveau emplacement du projet dans les fichier docker.compose.prod.yml,
 nginx.conf et DockerFile.prod
 
+#connexion avec : takioo@live.fr mdp: sinay2018
+
+===== pour windows ======
+# télécharger docker destop et ajouter le disque C au shared disks
+# pour les paths utiliser le format suivant pour docker-compose.prod.yml etc..
+# si le path windows est C:\Users\f.danselme\Documents\djangoTwitter\back\staticfiles utiliser comme path /Users/f.danselme/Documents/djangoTwitter/back/staticfiles/
 #si sur windows et erreur avec le shared drive et le firewall
 https://www.itprotoday.com/powershell/how-force-network-type-windows-using-powershell
 
-#connexion avec : takioo@live.fr mdp: sinay2018
+
