@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   server: 'https://app-twitter.dev.sinay.fr', // a changer,
-  urlDjango: 'http://0.0.0.0:8000/',
-  elasticSearchServer: 'http://localhost:9200/twitter-learning-',
+  urlDjango: 'http://localhost:8000/',
+  elasticSearchServer: 'http://localhost:9500/twitter-learning-',
   urlLoginIframe: 'https://platform.dev.sinay.fr/account/auth/login',
   urlLogoutIframe: 'https://platform.dev.sinay.fr/account/auth/logout'
 };

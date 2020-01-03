@@ -123,3 +123,4 @@ USE_TZ = True
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 CORS_ORIGIN_ALLOW_ALL = True   
+CORS_ALLOW_HEADERS = ["x-auth-token", "content-type"]

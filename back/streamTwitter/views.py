@@ -16,10 +16,10 @@ from django.core import serializers
 from sklearn.metrics import confusion_matrix
 import requests
 #clé secrétes twitter
-APP_KEY = '********L'
-APP_SECRET= 'x*****44'
-OAUTH_TOKEN = '**-*****'
-OAUTH_TOKEN_SECRET = '*******'
+APP_KEY = 'cb3FS7iBybOU1I39sZqjPAeXd'
+APP_SECRET= '6WT3hiMn4fgV2YuoLfmKjqd6kTH7131vb6Fa95qW2thXA29CRs'
+OAUTH_TOKEN = '1348855934-DVfG1V5pfsOtFh7sajBTX4xSpZ9OqITmdVVSyO3'
+OAUTH_TOKEN_SECRET = 'NCIz17kuQx17vQtUOJQXcgdYwdVdTdITPAd1Yrhrxs8Hw'
 
 
 class MyStreamer(TwythonStreamer):
